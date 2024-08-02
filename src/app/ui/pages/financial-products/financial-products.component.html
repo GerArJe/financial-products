@@ -1,0 +1,60 @@
+<section class="financial-products-container">
+  <div class="financial-products-container__content">
+    <div class="search-container">
+      <input type="search" />
+      <button class="primary-button" (click)="addFinancialProduct()">Agregar</button>
+    </div>
+    @if (screenWidth < 1024) {
+    <div class="cards">
+      @for (financialProduct of financialProducts$ | async; track
+      financialProduct.id) {
+      <app-financial-product-card></app-financial-product-card>
+      }@empty {
+      <p class="cards__not-fount-items-text">There are no items.</p>
+      }
+    </div>
+    } @else {
+    <table class="table">
+      <div class="table__group">
+        <thead class="table__head">
+          <tr class="table__tr">
+            <th class="table__th">Logo</th>
+            <th class="table__th">Nombre del producto</th>
+            <th class="table__th">Descripción</th>
+            <th class="table__th">Fecha de liberación</th>
+            <th class="table__th">Fecha de restauración</th>
+          </tr>
+        </thead>
+        <tbody class="table__body">
+          <tr class="table__tr">
+            @for (financialProduct of financialProducts$ | async; track
+            financialProduct.id) {
+            <td class="table__td">{{ financialProduct.logo }}</td>
+            <td class="table__td">{{ financialProduct.name }}</td>
+            <td class="table__td">{{ financialProduct.description }}</td>
+            <td class="table__td">{{ financialProduct.releaseDate }}</td>
+            <td class="table__td">{{ financialProduct.revisionDate }}</td>
+            } @empty {
+            <p>There are no items.</p>
+            }
+          </tr>
+        </tbody>
+      </div>
+      <tfoot class="table__footer">
+        <p>N Resultados</p>
+        <select
+          name="recordsPerPage"
+          id="recordsPerPage"
+          [(ngModel)]="recordsPerPage"
+          (change)="onRecordsPerPageChange($event)"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </tfoot>
+    </table>
+    }
+  </div>
+</section>

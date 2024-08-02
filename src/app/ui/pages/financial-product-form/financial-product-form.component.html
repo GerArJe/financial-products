@@ -1,0 +1,96 @@
+{{ form.value | json }}
+<section class="section-container">
+  <div class="section-container__content">
+    <div class="title-container">
+      <h2 class="title-container__title">Formulario de Registro</h2>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-container">
+        <div class="form-container__field">
+          <label for="id">Id</label>
+          <input type="text" id="id" formControlName="id" />
+          @for (validation of validationMessages.id; track $index) {
+          <div
+            *ngIf="
+              form.get('id')?.hasError(validation.type) &&
+              (form.get('id')?.dirty || form.get('id')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+          }
+        </div>
+        <div class="form-container__field">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" formControlName="name" />
+          @for (validation of validationMessages.name; track $index) {
+          <div
+            *ngIf="
+              form.get('name')?.hasError(validation.type) &&
+              (form.get('name')?.dirty || form.get('name')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+          }
+        </div>
+        <div class="form-container__field">
+          <label for="description">Descripción</label>
+          <input type="text" id="description" formControlName="description" />
+          @for (validation of validationMessages.description; track $index) {
+          <div
+            *ngIf="
+              form.get('description')?.hasError(validation.type) &&
+              (form.get('description')?.dirty ||
+                form.get('description')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+          }
+        </div>
+        <div class="form-container__field">
+          <label for="logo">Logo</label>
+          <input type="url" id="logo" formControlName="logo" />
+          @for (validation of validationMessages.logo; track $index) {
+          <div
+            *ngIf="
+              form.get('logo')?.hasError(validation.type) &&
+              (form.get('logo')?.dirty || form.get('logo')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+          }
+        </div>
+        <div class="form-container__field">
+          <label for="releaseDate">Fecha liberación</label>
+          <input type="date" id="releaseDate" formControlName="releaseDate" />
+          @for (validation of validationMessages.releaseDate; track $index) {
+          <div
+            *ngIf="
+              form.get('releaseDate')?.hasError(validation.type) &&
+              (form.get('releaseDate')?.dirty ||
+                form.get('releaseDate')?.touched)
+            "
+          >
+            {{ validation.message }}
+          </div>
+          }
+        </div>
+        <div class="form-container__field">
+          <label for="revisionDate">Fecha Revisión</label>
+          <input
+            type="date"
+            id="revisionDate"
+            formControlName="revisionDate"
+          />
+        </div>
+      </div>
+      <div class="buttons-container">
+        <button class="secondary-button" type="reset">Reiniciar</button>
+        <button class="primary-button" type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+</section>

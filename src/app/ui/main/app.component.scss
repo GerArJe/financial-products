@@ -1,0 +1,16 @@
+header {
+  padding: 0.5rem;
+  @media only screen and (min-width: 1024px) {
+    padding: 2.5rem;
+  }
+  background-color: white;
+}
+
+main {
+  margin: 0.5rem;
+}
+
+.title {
+  text-align: center;
+  color: #152b5f;
+}
